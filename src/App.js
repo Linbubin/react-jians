@@ -21,7 +21,7 @@ class App extends Component {
 
   getItemList = () => {
     return this.state.list.map((item, index) => (
-      <TodoItem key={index} index={index} handleRemove={this.handleRemove} value={item} />
+      <TodoItem key={index} test='1' index={index} handleRemove={this.handleRemove} value={item} />
     ))
   }
 

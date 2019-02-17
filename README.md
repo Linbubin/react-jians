@@ -14,3 +14,17 @@ this.setState((prevState) => {
 * 单向数据流
 * 视图层框架
 * 函数式编程
+
+## propTypes defaultProps
+```js
+TodoItem.propTypes = {
+  test: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  handleRemove: PropTypes.func,
+  index: PropTypes.number
+}
+
+TodoItem.defaultProps = {
+  test: 'hello world'
+}
+```
