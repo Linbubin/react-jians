@@ -45,3 +45,11 @@ TodoItem.defaultProps = {
 
 ## diff算法-同层比对
 加key以后,比对时根据key做关联,提高比对性能.所以要使用一个稳定的内容做key值,尽可能不要用index做key.
+
+## ref
+`ref={input => this.input = input}`
+```js
+const value = this.input.value;
+//等价于
+const value = e.target.value;
+```
