@@ -28,3 +28,7 @@ TodoItem.defaultProps = {
   test: 'hello world'
 }
 ```
+
+## state,props,render的关系
+> 当组件的state或props刷新时，组件会被重新render<br/>
+> 父组件render,其所有包含的子组件都会重新render一次
