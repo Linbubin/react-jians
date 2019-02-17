@@ -42,3 +42,6 @@ TodoItem.defaultProps = {
 6. 5+2 生成新的虚拟dom `h('div', {id: 'a'}, [h('span',{},'good')])`
 7. 比较 6 和 4 生成的虚拟dom,找出差异
 8. 根据7中的差异,直接修改span的内容
+
+## diff算法-同层比对
+加key以后,比对时根据key做关联,提高比对性能.所以要使用一个稳定的内容做key值,尽可能不要用index做key.
