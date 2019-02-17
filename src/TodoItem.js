@@ -7,6 +7,11 @@ class TodoItem extends React.Component {
       <div onClick={this.handleClick}>{this.props.test} - {this.props.value}</div>
     )
   }
+
+  shouldComponentUpdate(){
+    return false 
+  }
+
   handleClick = () => {
     const { handleRemove, index } = this.props;
     handleRemove(index);

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
+import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class App extends Component {
 
   getItemList = () => {
     return this.state.list.map((item, index) => (
-      <TodoItem key={index} test='1' index={index} handleRemove={this.handleRemove} value={item} />
+      <TodoItem key={`${item}--${index}`} test='1' index={index} handleRemove={this.handleRemove} value={item} />
     ))
   }
 
