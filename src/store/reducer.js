@@ -1,4 +1,4 @@
-import {CHANGE_INPUT_VALUE, ADD_LIST} from './actionTypes';
+import {CHANGE_INPUT_VALUE, ADD_LIST, INIT_DATA} from './actionTypes';
 
 const defaultStore = {
   inputValue: '',
@@ -17,6 +17,10 @@ export default (state = defaultStore, action) => {
       newValue = Object.assign({}, state);
       newValue.list.push(state.inputValue);
       newValue.inputValue = '';
+      return newValue
+    case INIT_DATA:
+      newValue = Object.assign({}, state);
+      newValue.list = action.value;
       return newValue
   }
   return state

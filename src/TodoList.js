@@ -2,13 +2,17 @@ import React, { Component, Fragment } from 'react';
 import 'antd/dist/antd.css';
 import { Input, Button, List } from 'antd';
 import store from './store';
-import {changeInputValue, addList} from './store/actionCreators';
+import {changeInputValue, addList, getInitDate} from './store/actionCreators';
 
 class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = store.getState();
     store.subscribe(this.handleSubscribe);
+  }
+  componentDidMount(){
+    const action = getInitDate();
+    store.dispatch(action);
   }
   render() {
     return (
