@@ -1,9 +1,8 @@
-import {CHANGE_INPUT_VALUE, ADD_LIST, INIT_DATA} from './actionTypes';
-import axios from 'axios';
+import {CHANGE_VALUE,ADD_LIST,REMOVE_LIST,GET_INIT_DATA} from './actionTypes';
 
-const changeInputValue = (value) => (
+const changeValue = (value) => (
   {
-    type: CHANGE_INPUT_VALUE,
+    type: CHANGE_VALUE,
     value
   }
 )
@@ -12,25 +11,21 @@ const addList = () => (
     type: ADD_LIST,
   }
 )
-
-const initData = (value) => (
+const removeList = (index) => (
   {
-    type: INIT_DATA,
-    value
+    type: REMOVE_LIST,
+    index
+  }
+)
+const getInitData = () => (
+  {
+    type: GET_INIT_DATA,
   }
 )
 
-const getInitDate = () => {
-  return (dispatch) => {
-    axios.get('http://localhost:3003/testApi').then(res => {
-      const action = initData(res.data.data);
-      dispatch(action)
-    })
-  }
-}
-
 export {
-  changeInputValue,
+  changeValue,
   addList,
-  getInitDate
+  removeList,
+  getInitData
 }

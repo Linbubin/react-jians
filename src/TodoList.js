@@ -1,43 +1,52 @@
 import React, { Component, Fragment } from 'react';
-import 'antd/dist/antd.css';
-import { Input, Button, List } from 'antd';
-import store from './store';
-import {changeInputValue, addList, getInitDate} from './store/actionCreators';
+// import store from './store'
+import {connect} from 'react-redux';
+import {
+  changeValue,
+  addList,
+  removeList,
+  getInitData
+} from './store/actionCreators';
 
 class TodoList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = store.getState();
-    store.subscribe(this.handleSubscribe);
-  }
-  componentDidMount(){
-    const action = getInitDate();
-    store.dispatch(action);
-  }
   render() {
+    console.log('props::', this.props)
     return (
       <Fragment>
-        <Input value={this.state.inputValue} onChange={this.handleOnChange} placeholder="输入一些什么" style={{ width: 300 }} />
-        <Button type="primary" onClick={this.handleClick}>添加</Button>
-        <List
-          dataSource={this.state.list}
-          renderItem={item => (<List.Item>{item}</List.Item>)}
-        />
+        <div>
+          <input value={this.props.value} onChange={this.props.handleChange} />
+          <button onClick={this.props.handleClick}>提交</button>
+        </div>
+        <ul>
+          {this.props.list.map((item,index) => <li onClick={this.props.removeList.bind(this, index)} key={index}>{item}</li>)}
+        </ul>
       </Fragment>
     )
   }
-  handleOnChange = (e) => {
-    const action = changeInputValue(e.target.value);
-    // console.log(e.target.value)
-    store.dispatch(action)
-  }
-  handleClick = () => {
-    const action = addList();
-    store.dispatch(action)
-  }
-  handleSubscribe = () => {
-    this.setState(store.getState())
-  }
 }
 
-export default TodoList;
+const mapStateToProps = (state) => (
+  {
+    value: state.value,
+    list: state.list
+  }
+)
+
+const mapDispatchToProps = (dispatch) => ({
+  handleChange(e){
+    // console.log(e);
+    const action = changeValue(e.target.value);
+    dispatch(action);
+    // dispatch()
+  },
+  handleClick(){
+    const action = addList();
+    dispatch(action);
+  },
+  removeList(index){
+    const action = removeList(index);
+    dispatch(action);
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

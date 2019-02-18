@@ -1,26 +1,24 @@
-import {CHANGE_INPUT_VALUE, ADD_LIST, INIT_DATA} from './actionTypes';
+import {CHANGE_VALUE,ADD_LIST,REMOVE_LIST,GET_INIT_DATA} from './actionTypes';
 
-const defaultStore = {
-  inputValue: '',
+const defaultState = {
+  value: '123',
   list: []
 }
 
-export default (state = defaultStore, action) => {
-  // console.log('reducer::', state, action)
-  let newValue;
+export default (state=defaultState, action) => {
+  let newValue = Object.assign({}, state);
   switch(action.type){
-    case CHANGE_INPUT_VALUE:
-      newValue = Object.assign({}, state);
-      newValue.inputValue = action.value;
+    case CHANGE_VALUE:
+      newValue.value = action.value;
       return newValue
     case ADD_LIST:
-      newValue = Object.assign({}, state);
-      newValue.list.push(state.inputValue);
-      newValue.inputValue = '';
-      return newValue
-    case INIT_DATA:
-      newValue = Object.assign({}, state);
-      newValue.list = action.value;
+      newValue.list.push(newValue.value);
+      newValue.value = '';
+      return newValue;
+    case REMOVE_LIST:
+      console.log('11111111111', action, newValue)
+      newValue.list.splice(action.index, 1);
+      console.log(newValue)
       return newValue
   }
   return state
