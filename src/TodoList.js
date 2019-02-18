@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import 'antd/dist/antd.css';
 import { Input, Button, List } from 'antd';
 import store from './store';
+import {changeInputValue, addList} from './store/actionCreators';
 
 class TodoList extends Component {
   constructor(props) {
@@ -22,17 +23,12 @@ class TodoList extends Component {
     )
   }
   handleOnChange = (e) => {
-    const action = {
-      type: 'change_input_value',
-      value: e.target.value
-    }
-    console.log(e.target.value)
+    const action = changeInputValue(e.target.value);
+    // console.log(e.target.value)
     store.dispatch(action)
   }
   handleClick = () => {
-    const action = {
-      type: 'add_list',
-    }
+    const action = addList();
     store.dispatch(action)
   }
   handleSubscribe = () => {

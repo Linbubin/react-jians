@@ -86,7 +86,13 @@ componentWillUnmount 这个函数没有设置好的参数,也没有对应得did�
 ## redux
 > redux = flux + reducer
 
-action creater 借的话 -> store
-store 图书馆的管理员 -> <- reducers
-reducer 记录本
-react component 自己  -> action
+特点:
+* store是唯一的
+* 只有store能够改变自己的内容
+* reducer必须是纯函数
+
+主要函数
+* store.createReducer
+* store.getState
+* store.dispatch
+* store.subscribe
