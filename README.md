@@ -82,3 +82,11 @@ Warning: setState(...): Cannot update during an existing state transition (such 
 
 ### 卸载过程
 componentWillUnmount 这个函数没有设置好的参数,也没有对应得did函数,一般用于清除`componentDidMount`中声明的一些非react的方法,比如定时器.否则可能会造成内存泄漏.
+
+## redux
+> redux = flux + reducer
+
+action creater 借的话 -> store
+store 图书馆的管理员 -> <- reducers
+reducer 记录本
+react component 自己  -> action
